@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var fs = require('fs');
+
+var client = path.join(__dirname, '..', 'src',"client.js");
+
+
+require(client);
