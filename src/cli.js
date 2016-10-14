@@ -4,21 +4,27 @@
 var yargs = require('yargs');
 var chalk = require('chalk');
 var helper = require('./util/helper.js');
-var staticserver = require('./index.js');
+var entry = require('./index.js');
 
 //控制台命令参数解析
 var argv = yargs.usage('\nUsage:\n  staticserver [options ...]')
 	.epilog(chalk.green('powered by lilieming!'))
 	.help('help', 'show help list')
 	.alias('help', 'h')
-	.option('p', {
+	.option('p', {  
 		alias: 'port',
 		demand: false,
 		default: 8181,
 		number: true,
-		describe: 'server listen port'
+		describe: '指定监听端口'
+	})
+	.option('livereload', {  
+		demand: false,
+		default: true,
+		boolean: true,
+		describe: '是否自动刷新'
 	})
 	.argv;
 
 //TODO: more config will be added
-staticserver(argv);
+entry(argv);
