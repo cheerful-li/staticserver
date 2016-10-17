@@ -11,7 +11,7 @@ var livereload = module.exports = function(options){
 	//监听文件变动
 	var watcher = chokidar.watch(cwd,{
 		ignored:[/node_modules/]
-	}).on('all',function(action, path){
+	}).on('change',function(action, path){
 		console.log(`file ${action}: ${path}`);
 		var data = {"path":path};
 		//css文件变动时，浏览器可以不刷新页面，只重新请求css文件，实现css自动刷新

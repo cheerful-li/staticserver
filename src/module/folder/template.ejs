@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%=title%></title>
+	<link rel="stylesheet" href="/nice_iconfont.css">
+	<style>
+		ul{list-style-type: none;}
+		ul li{
+			margin-bottom:4px;
+		}
+		a{text-decoration: none;}
+	</style>
+</head>
+<body>
+	<p>当前路径： <%=curDir%></p>
+	<div>
+		<ul>
+			<% if(prePath){%>
+			<li><a href="<%=prePath%>" class="icon-return">返回上级</a></li>
+			<%}%>
+			<% folders.forEach(function(folder){%>
+			<li><a href="<%=join(curDir,folder)%>" class="icon-folder"><%=folder%></a></li>
+			<%})%>
+			<% files.forEach(function(file){%>
+			<li><a href="<%=join(curDir,file)%>" class="icon-file"><%=file%></a></li>
+			<%})%>
+		</ul>
+	</div>
+</body>
+</html>

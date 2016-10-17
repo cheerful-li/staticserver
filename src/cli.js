@@ -30,6 +30,12 @@ var argv = yargs.usage('\nUsage:\n  staticserver [options ...]')
 		boolean: true,
 		describe: '是否自动打开浏览器'
 	})
+	.option('routefile', {  
+		alias:'r',
+		demand: false,
+		string: true,
+		describe: '路由配置文件'
+	})
 	.argv;
 
 //TODO: more config will be added
