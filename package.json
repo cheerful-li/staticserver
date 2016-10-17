@@ -1,5 +1,5 @@
 {
-  "name": "staticserver",
+  "name": "nice",
   "version": "1.0.0",
   "description": "静态服务器，自动刷新，可作为代理服务器，可模拟接口，可支持ftl",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "staticserver": "./bin/staticserver"
+    "nice": "./bin/nice"
   },
   "author": "lilieming",
   "license": "ISC",

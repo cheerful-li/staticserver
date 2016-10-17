@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var exec = require('child_process').exec;
 var helper = require('./util/helper.js');
 var livereload = require('./module/livereload.js');
 //labor is the nickname of staticserver
@@ -14,7 +15,7 @@ var labor = module.exports = function(options){
 	}
 	//静态文件目录展示页面
 	
-	//文件
+	//响应静态文件
 	app.use(express.static(process.cwd()));
 
 	server.listen(options.port);
@@ -28,6 +29,13 @@ var labor = module.exports = function(options){
 	});
 	server.on('listening', function(){
 		helper.log('staticserver start at '+options.port);
-		//TODO: open a browser
+		if(options.openbrowser){
+			var url = `http://localhost:${options.port}`;
+			helper.log('open default browser in: '+url);
+			exec(`start ${url}`,function(err,stdout,stderr){
+				if(err) console.log(err.message);
+			});
+		}
+		
 	});
 }

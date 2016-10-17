@@ -24,6 +24,12 @@ var argv = yargs.usage('\nUsage:\n  staticserver [options ...]')
 		boolean: true,
 		describe: '是否自动刷新'
 	})
+	.option('openbrowser', {  
+		demand: false,
+		default: true,
+		boolean: true,
+		describe: '是否自动打开浏览器'
+	})
 	.argv;
 
 //TODO: more config will be added
