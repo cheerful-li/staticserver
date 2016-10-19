@@ -7,9 +7,10 @@ var bodyParser = require('body-parser');
 var libUrl = require('url');
 var helper = require('../util/helper.js');
 var  libEval = require('eval');
+var proxy = require('./proxy.js');
 var routeConfig = module.exports = function(routefile) {
 	var routefile = path.join(process.cwd(), routefile);
-	if (!fs.existsSync(routefile)) return;
+	if (!fs.existsSync(routefile)) return helper.log('cant find the routeConfig file!','error');
 	var config = require(routefile);
 	if (!config) return;
 	var routes = parseConfig(config);
@@ -62,8 +63,18 @@ function parseConfig(config) {
 
 		var handler;
 		if (_.isString(value)) {
-			if (value.indexOf('http') == 0) {
-				//TODO:PROXY
+			if (value.indexOf('http') == 0) { //proxy
+
+				handler = function(value,req,res){
+					proxy({proxy:value})(req,res);
+					/*proxyServer.on('proxyReq',function(proxyReq){
+						console.log(JSON.stringify(proxyReq._headers));
+					});
+					proxyServer.on('proxyRes',function(proxyRes){
+						console.log(JSON.stringify(proxyRes._headers));
+					});*/
+				}.bind(null,value);
+
 			} else {
 				var abPath = path.join(process.cwd(), value);
 				if (fs.existsSync(abPath)) {

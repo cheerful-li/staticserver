@@ -36,6 +36,11 @@ var argv = yargs.usage('\nUsage:\n  staticserver [options ...]')
 		string: true,
 		describe: '路由配置文件'
 	})
+	.option('proxy', {  
+		demand: false,
+		string: true,
+		describe: '代理模式，所有请求都走代理，除了--routefile里面的路由'
+	})
 	.argv;
 
 //TODO: more config will be added
